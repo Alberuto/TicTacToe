@@ -1,6 +1,9 @@
 using Fusion;
 using System;
 using UnityEngine;
+using System.Linq;
+using UnityEngine.UIElements.Experimental;
+using Unity.VisualScripting;
 
 public class NetworkTicTacToe : NetworkBehaviour {
 
@@ -32,13 +35,11 @@ public class NetworkTicTacToe : NetworkBehaviour {
     }
     public void TryTurn(int index) {
 
-        if (EndGame) {
-            return;
-        }
-        else {
+        if (EndGame) return;
+        
             RPC_Play(index);
-        }
     }
+
     [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
     private void RPC_Play(int index) {
 
@@ -46,24 +47,33 @@ public class NetworkTicTacToe : NetworkBehaviour {
 
         if (Board.Get(index) != 0) return;
 
-        //if(Runner.LocalPlayer != ThisTurn) return;
+        /*
+          if(Runner.LocalPlayer != ThisTurn) return;
 
-       // int player = (ThisTurn == Runner.ActivePlayers[0]) ? 1 : 2;
+          int player = (ThisTurn == Runner.ActivePlayers.ToList()[0]) ? 1 : 2;
 
-       // Board.Set(index, player);
+          Board.Set(index, player);
 
-      /*  if (CheckWin(player))
-        {
-            EndGame = true;
-        }
-        else {
-            ChangeTurn();
-        }*/
+          if (CheckWin(player))
+          {
+              EndGame = true;
+          }
+          else {
+              ChangeTurn();
+          }
+        */
     }
-
     private void ChangeTurn() {
 
+        /*
+        foreach (var player in Runner.ActivePlayers) {
 
+            if (player != ThisTurn) {
+                ThisTurn = player;
+                break;
+            }
+        }
+        */
     }
     private bool CheckWin(object player) {
 
@@ -79,11 +89,12 @@ public class NetworkTicTacToe : NetworkBehaviour {
         };
 
         for (int  i  = 0;  i  < combination.GetLength(0);  i ++) {
+            /*  if (Board.Get(combination[i,0]) == player &&
+                   Board.Get(combination[i,1]) == player &&
+                   Board.Get(combination[i,2]) == player) return true;
 
-
-            
+             */ 
         }
-
         return false;
     }
 }

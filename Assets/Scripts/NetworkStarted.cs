@@ -4,6 +4,7 @@ using Fusion;
 public class NetworkStarted : MonoBehaviour {
 
     public NetworkRunner runnerPrefab;
+    public NetworkObject tictactoePrefab;
 
     private async void Start() {
         
@@ -12,8 +13,13 @@ public class NetworkStarted : MonoBehaviour {
         runner.ProvideInput = false;
 
         await runner.StartGame(new StartGameArgs() {
-            GameMode = GameMode.AutoHostOrClient,
-            SessionName = "Test"
+            GameMode = GameMode.Shared,
+            SessionName = "Test",
+            SceneManager = runner.GetComponent<NetworkSceneManagerDefault>()
         });
+
+        if (runner.IsSharedModeMasterClient) { 
+            runner.Spawn(tictactoePrefab);
+        }
     }
 }
