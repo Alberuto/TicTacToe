@@ -2,8 +2,7 @@ using Fusion;
 using System;
 using UnityEngine;
 
-public class NetworkTicTacToe : NetworkBehaviour
-{
+public class NetworkTicTacToe : NetworkBehaviour {
 
     [Networked, Capacity(9)]
     public NetworkArray<int> Board => default;
@@ -49,9 +48,9 @@ public class NetworkTicTacToe : NetworkBehaviour
 
         //if(Runner.LocalPlayer != ThisTurn) return;
 
-        //int player = (ThisTurn == Runner.ActivePlayers[0]) ? 1 : 2;
+       // int player = (ThisTurn == Runner.ActivePlayers[0]) ? 1 : 2;
 
-        //Board.Set(index, player);
+       // Board.Set(index, player);
 
       /*  if (CheckWin(player))
         {

@@ -16,7 +16,4 @@ public class NetworkStarted : MonoBehaviour {
             SessionName = "Test"
         });
     }
-    void Update() {
-        
-    }
 }
