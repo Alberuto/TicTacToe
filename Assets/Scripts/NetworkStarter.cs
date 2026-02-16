@@ -1,7 +1,7 @@
 using UnityEngine;
 using Fusion;
 
-public class NetworkStarted : MonoBehaviour {
+public class NetworkStarter : MonoBehaviour {
 
     public NetworkRunner runnerPrefab;
     public NetworkObject tictactoePrefab;
