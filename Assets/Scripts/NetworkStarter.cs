@@ -13,12 +13,16 @@ public class NetworkStarter : MonoBehaviour {
         runner.ProvideInput = false;
 
         await runner.StartGame(new StartGameArgs() {
+
             GameMode = GameMode.Shared,
             SessionName = "Test",
             SceneManager = runner.GetComponent<NetworkSceneManagerDefault>()
+
         });
 
         if (runner.IsSharedModeMasterClient) { 
+
+            Debug.Log("Spawning game TTT from host player 1");
             runner.Spawn(tictactoePrefab);
         }
     }

@@ -28,35 +28,43 @@ public class NetworkTicTacToe : NetworkBehaviour {
             for (int i = 0; i < 9; i++) {
 
                 Board.Set(i, 0);
-
             }
         }
     }
     public void TryTurn(int index) {
+        
+        Debug.Log($"Player {Runner.LocalPlayer} is trying to play at index {index}");
+        Debug.Log("intentamos" + index);
 
         if (EndGame) 
             return;
         
-            RPC_Play(index);
+        RPC_Play(index);
     }
+
     [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
-    private void RPC_Play(int index) {
+    private void RPC_Play(int index, RpcInfo info = default) {
+
+        Debug.Log($"RPC_Play ejecutado en "+Runner.LocalPlayer);
 
         if (EndGame) return;
 
         if (Board.Get(index) != 0) return;
 
-        if(Runner.LocalPlayer != ThisTurn) return;
+        PlayerRef playerCaller = info.Source; //player that called the RPC
+
+        Debug.Log($"Player {playerCaller} called RPC_Play with index {index}");
+
+        if (playerCaller != ThisTurn) return;
 
           int player = (ThisTurn == Runner.ActivePlayers.ToList()[0]) ? 1 : 2;
+
           Board.Set(index, player);
 
-          if (CheckWin(player)) {
+          if (CheckWin(player)) 
               EndGame = true;
-          }
-          else {
+          else 
               ChangeTurn();
-          }
     }
     private void ChangeTurn() {
 
