@@ -14,9 +14,10 @@ public class UI : MonoBehaviour {
 
         InvokeRepeating(nameof(FindGame), 0.5f, 0.5f);
 
-        for (int index = 0; index < buttons.Length; index++) 
-
-            buttons[index].onClick.AddListener(() => game.TryTurn(index));
+        for (int i = 0; i < buttons.Length; i++) {
+            var index = i; // capture the current value of i
+            buttons[i].onClick.AddListener(() => game.TryTurn(index));
+        }
     }
     void Update() {
 

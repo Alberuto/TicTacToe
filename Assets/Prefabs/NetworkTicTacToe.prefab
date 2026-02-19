@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9046471649373147182}
   - component: {fileID: 354685222700512231}
+  - component: {fileID: -2547091401207890578}
   m_Layer: 0
   m_Name: NetworkTicTacToe
   m_TagString: Untagged
@@ -48,5 +49,20 @@ MonoBehaviour:
   ObjectInterest: 1
   Flags: 262145
   NestedObjects: []
-  NetworkedBehaviours: []
+  NetworkedBehaviours:
+  - {fileID: -2547091401207890578}
   ForceRemoteRenderTimeframe: 0
+--- !u!114 &-2547091401207890578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967661113492856107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd483f5a72b99744781797aa4a99bade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NetworkTicTacToe
+  _Board: 
+  _EndGame: 0
