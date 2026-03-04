@@ -27,13 +27,11 @@ public class NetworkStarter : MonoBehaviour, INetworkRunnerCallbacks {
 
         //conexion con el server
         runnerInstance.JoinSessionLobby(SessionLobby.Shared, lobbyName);
-
     }
     public static void ReturnToLobby() {
         //despawn del player simil a logout, te manda al lobby
         //runnerInstance.Despawn(runnerInstance.GetPlayerObject(runnerInstance.LocalPlayer));
         runnerInstance.Shutdown(true,ShutdownReason.Ok);
-
     }
     public void OnShutDown(NetworkRunner runner, ShutdownReason reason) {
 
@@ -129,6 +127,8 @@ public class NetworkStarter : MonoBehaviour, INetworkRunnerCallbacks {
         Debug.Log(new System.NotImplementedException());
     }
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player) {
+
+
         /* Todos jugamos sobre el mismo tablero, comentado por si acaso para otros proyectos, 
          * pero para el tictactoe no es necesario el spawn de un objeto por jugador, 
          * ya que el tablero es compartido y cada jugador solo tiene que enviar su input 
