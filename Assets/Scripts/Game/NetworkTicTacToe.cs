@@ -38,7 +38,7 @@ public class NetworkTicTacToe : NetworkBehaviour {
 
         if (EndGame) 
             return;
-        
+   
         RPC_Play(index);
     }
 

@@ -22,8 +22,9 @@ public class NetworkStarter : MonoBehaviour, INetworkRunnerCallbacks {
     //[SerializeField] private GameObject playerPrefab;
 
     private void Start() {
-
+        DontDestroyOnLoad(this);
         runnerInstance = Instantiate(runnerPrefab);
+        runnerInstance.AddCallbacks(this);
 
         //conexion con el server
         runnerInstance.JoinSessionLobby(SessionLobby.Shared, lobbyName);
@@ -128,7 +129,6 @@ public class NetworkStarter : MonoBehaviour, INetworkRunnerCallbacks {
     }
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player) {
 
-
         /* Todos jugamos sobre el mismo tablero, comentado por si acaso para otros proyectos, 
          * pero para el tictactoe no es necesario el spawn de un objeto por jugador, 
          * ya que el tablero es compartido y cada jugador solo tiene que enviar su input 
@@ -179,13 +179,13 @@ public class NetworkStarter : MonoBehaviour, INetworkRunnerCallbacks {
         Debug.Log(new System.NotImplementedException());
     }
     public void OnSceneLoadDone(NetworkRunner runner) {
+        runner.Spawn(tictactoePrefab);
         Debug.Log(new System.NotImplementedException());
     }
     public void OnSceneLoadStart(NetworkRunner runner) {
         Debug.Log(new System.NotImplementedException());
     }
 }
-
 
 /*
  * MODO SIN LOBBY, SOLO PARA TESTEAR LA CONEXION Y EL SPAWN DE OBJETOS EN LA ESCENA DE JUEGO
