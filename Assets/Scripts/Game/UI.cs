@@ -11,9 +11,7 @@ public class UI : MonoBehaviour {
     void Start() {
 
         endGameText.text = ""; //no se si en start o update comutar y probar
-
         InvokeRepeating(nameof(FindGame), 0.5f, 0.5f);
-
         for (int i = 0; i < buttons.Length; i++) {
             var index = i; // capture the current value of i
             buttons[i].onClick.AddListener(() => game.TryTurn(index));
